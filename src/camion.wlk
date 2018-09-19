@@ -14,11 +14,12 @@ object camion {
 	}
 
 	method pesoTotal() {
-		return cosas.sum({ elem => cosas.peso() }) + peso
+		return cosas.sum({ elem => elem.peso() }) + peso
 	}
 
 	method excedidoDePeso() {
-		return self.pesoTotal() > 2500
+		const pesomaximo=2500
+		return self.pesoTotal() > pesomaximo
 	;
 	}
 
@@ -27,11 +28,12 @@ object camion {
 	}
 
 	method objetosMasPeligrososQue(cosa) {
-		return cosas.all({ elem => elem.nivelPeligrosidad() > cosa.nivelPeligrosidad() })
+		return cosas.filter({ elem => elem.nivelPeligrosidad() > cosa.nivelPeligrosidad() })
 	}
 
+
 	method puedeCircularEnRuta(nivelMaximoPeligrosidad) {
-		return cosas.all({ elem => elem.nivelPeligrosidad() > nivelMaximoPeligrosidad })
+		return cosas.all({ elem => elem.nivelPeligrosidad() < nivelMaximoPeligrosidad })
 	}
 
 }

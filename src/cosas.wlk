@@ -108,12 +108,18 @@ object contenedorPor {
 	}
 
 	method peso() {
-		if(!cosas.isEmpty())
+		if(cosas.isEmpty())
 		{
 		 return 100	
+		}else 
+		return 100 + cosas.sum({ elem => elem.peso() })
+	}
+	method nivelPeligrosidad() {
+		
+		return cosas.max ({elem=>elem.nivelPeligrosidad()}).nivelPeligrosidad()
+		 
 		}
-		return 100 + cosas.filter({ elem => cosas.peso() })
 	}
 
-}
+
 
